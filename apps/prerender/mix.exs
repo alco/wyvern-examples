@@ -13,10 +13,9 @@ defmodule Prerender.Mixfile do
   # Configuration for the OTP application
   #
   # Type `mix help compile.app` for more information
-  #def application do
-  #  [ applications: [],
-  #    mod: {Prerender, []} ]
-  #end
+  def application do
+    [applications: [:wyvern]]
+  end
 
   defp deps do
     [{:wyvern, github: "alco/wyvern"}]
