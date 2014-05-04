@@ -11,10 +11,11 @@ defmodule Prerender do
       ["layouts/base", "layouts/navbar", "green"],
       ["layouts/base", "layouts/navbar", "blue"],
     ]
-    Enum.each(views, fn layers ->
-      result = Wyvern.render_view(layers, templates_dir: @templates_dir)
-      path = Path.join(@output_dir, List.last(layers) <> ".html")
-      File.write!(path, result)
-    end)
+    file_opts = [
+      output_dir: @output_dir,
+      ext: "html",
+      check: :timestamp,
+    ]
+    Wyvern.render_views(views, templates_dir: @templates_dir, file_opts: file_opts)
   end
 end
