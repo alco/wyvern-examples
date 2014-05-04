@@ -1,0 +1,9 @@
+<p>Hello, I'm <span>green</span></p>
+
+<% content_for :head do %>
+<style>
+  span {
+    color: green;
+  }
+</style>
+<% end %>
