@@ -41,6 +41,14 @@ defmodule MyLayouts do
     Wyvern.define_layout(["base", "navbar"])
   end
 end
+
+...
+
+defmodule M do
+  def render_my_view do
+    Wyvern.render_view([MyLayouts.navbar_layout, "view"])
+  end
+end
 ```
 
 Repeated calls to the `navbar_layout` function will hit the cache so it won't
@@ -54,7 +62,7 @@ starts, you need to put them into a module (or multiple modules).
 
 ```
 defmodule MyLayouts do
-  # define base so that it is not compiled into subsequently defined layouts
+  # define base so that it is not merged into subsequently defined layouts
   # but is referenced by them
   base = Wyvern.define_layout(["base"])
 
@@ -67,8 +75,8 @@ defmodule MyLayouts do
 end
 ```
 
-This will create a `render/2` function within the module with separate clause
-for each layout. Use those layouts as follows:
+This will create a `render/3` function and a `layout/1` function within the
+module with separate clause for each layout. Use those layouts as follows:
 
 ```
 MyLayouts.render("layout:sidenav", "view", attrs: ...)
@@ -93,8 +101,8 @@ Wyvern.render_view([SingleLayout, "view"])
 
 ## Precompiling views
 
-We can also precompile whole views into modules during our project's compilation
-phase. That can be done as follows:
+We can also precompile views into modules during our project's compilation
+phase. This can be done as follows:
 
 ```
 defmodule MyViews do
@@ -120,6 +128,21 @@ MyViews.render("home", [])  # renders the "index" view; the name "home" was pass
 MyViews.render("products/edit", product_id: <id>)
 ```
 
+To use a single module per view:
+
+```
+defmodule IndexView do
+  navbar_layout = Wyvern.define_layout(["base", "navbar"])
+
+  use Wyvern.View, [
+    layers: [navbar_layout, "index"],
+    attrs: ...,
+  ]
+end
+
+IndexView.render(<attrs>)
+```
+
 
 ## Prerendering views
 
@@ -127,6 +150,9 @@ Prerendering means rendering all or some of your app's views upfront, so that
 your server can then serve static files directly. With Wyvern you just need to
 set up a list of views you want prerendered along with caching config that will
 indicate under which conditions views should be rendered again.
+
+Caches can be individually invalidated to make sure your prerendered views
+reflect the state of your app's models.
 
 
 ## Caching rendered views
