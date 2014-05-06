@@ -1,8 +1,8 @@
-defmodule Prerender.Mixfile do
+defmodule Basic.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :prerender,
+    [app: :basic,
      version: "0.0.1",
      deps_path: "../../deps",
      lockfile: "../../mix.lock",
