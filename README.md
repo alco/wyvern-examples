@@ -6,6 +6,8 @@
 
 ---
 
+## Using Wyvern
+
 Basic usage starts with the `Wyvern.render_view` function. It takes a list of
 layers and config options and produces the rendered view.
 
@@ -13,10 +15,11 @@ This function will compile the templates in memory and will also cache the
 results per the provided config, making subsequent calls to it using the same
 layers fairly cheap.
 
-There's a number of ways users can further optimize the rendering process.
+There's a number of ways to help building a maintainable structure for
+templates and optimizing for specific use cases. They are described below.
 
 
-## Defining layouts
+### Defining layouts
 
 First, we can define a layout which will more efficiently precompile it.
 
@@ -55,7 +58,7 @@ Repeated calls to the `navbar_layout` function will hit the cache so it won't
 recompile the layers every time.
 
 
-## Precompiling layouts
+### Precompiling layouts
 
 In case you want to have a set of layouts already compiled before your app
 starts, you need to put them into a module (or multiple modules).
@@ -99,7 +102,7 @@ Wyvern.render_view([SingleLayout, "view"])
 ```
 
 
-## Precompiling views
+### Precompiling views
 
 We can also precompile views into modules during our project's compilation
 phase. This can be done as follows:
@@ -144,7 +147,7 @@ IndexView.render(<attrs>)
 ```
 
 
-## Prerendering views
+### Prerendering views
 
 Prerendering means rendering all or some of your app's views upfront, so that
 your server can then serve static files directly. With Wyvern you just need to
@@ -155,7 +158,7 @@ Caches can be individually invalidated to make sure your prerendered views
 reflect the state of your app's models.
 
 
-## Caching rendered views
+### Caching rendered views
 
 Wyvern also supports caching of rendering results. Based on you application
 needs, some views may change less frequently than others. Caching controls in
@@ -167,7 +170,7 @@ facilities provided by the OS so send view files over sockets if they don't
 need to be recreated. This could further improve the performance of your app.
 
 
-## Recap
+### Recap
 
 Simple apps will most likely only ever need the `Wyvern.render_view` function.
 Defining common layouts is easy even without special support from Wyvern:
