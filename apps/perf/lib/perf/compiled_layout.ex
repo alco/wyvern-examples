@@ -40,7 +40,7 @@ defmodule Perf.CompiledLayout do
   # layouts
 
   defmodule Layouts do
-    Perf.CompiledLayout.Generator.gen_templates(Perf.CompiledLayout, 100000, clean: true)
+    Perf.CompiledLayout.Generator.gen_templates(Perf.CompiledLayout, 50000, clean: true)
 
     require Wyvern
     # FIXME: replace literal values with variables when they are supported
@@ -52,6 +52,16 @@ defmodule Perf.CompiledLayout do
     ])
   end
 
+
+  defmodule SingleLayout do
+    layers = ["layout1", "layout2", "layout3", "layout4", "layout5",
+                     "layout6", "layout7", "layout8", "layout9", "layout10"]
+
+    use Wyvern.Layout, [
+      layers: layers,
+      views_root: views_root,
+    ]
+  end
 
   @views_root views_root
 
@@ -80,6 +90,10 @@ defmodule Perf.CompiledLayout do
 
     Perf.measure("Precompiled layout, no autocompile and no caching (using Layouts.render)", fn ->
       Layouts.render("layout:compiled", "view", config)
+    end)
+
+    Perf.measure("Precompiled layout, no autocompile and no caching (using single module)", fn ->
+      SingleLayout.render("view", config)
     end)
 
     # FIXME: autocompile is not compatible with precompiled layout

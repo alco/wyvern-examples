@@ -97,22 +97,26 @@ No autocompile with layout...done
 
 ```
 ## compiled_layout tests ##
-(total template size 1.10 MB)
+(total template size 0.55 MB)
 
 Basic render_view, no autocompile and no caching...done
-  total:        3.42 s (10 iterations)
-  avg per call: 342.00 ms
-  first call:   342.24 ms
+  total:        1.45 s (10 iterations)
+  avg per call: 135.01 ms
+  first call:   233.75 ms
 Predefined layout, no autocompile and no caching...done
-  total:        17.87 s (10 iterations)
-  avg per call: 23.69 ms
-  first call:   17651.93 ms
+  total:        8.16 s (10 iterations)
+  avg per call: 11.66 ms
+  first call:   8050.75 ms
 Precompiled layout, no autocompile and no caching...done
-  total:        0.20 s (10 iterations)
-  avg per call: 20.20 ms
-  first call:   19.61 ms
+  total:        0.11 s (10 iterations)
+  avg per call: 11.04 ms
+  first call:   11.90 ms
 Precompiled layout, no autocompile and no caching (using Layouts.render)...done
-  total:        0.21 s (10 iterations)
-  avg per call: 20.17 ms
-  first call:   25.47 ms
+  total:        0.11 s (10 iterations)
+  avg per call: 10.67 ms
+  first call:   10.26 ms
+Precompiled layout, no autocompile and no caching (using single module)...done
+  total:        0.10 s (10 iterations)
+  avg per call: 9.51 ms
+  first call:   9.39 ms
 ```
