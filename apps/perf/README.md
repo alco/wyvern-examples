@@ -2,7 +2,7 @@
 
 ## Test runs
 
-### Comparing template sizes
+### Template sizes
 
 ```
 λ mix run
@@ -53,7 +53,7 @@ Autocompile with precompilation but no caching...done
   first call:   145.77 ms
 ```
 
-### Comparing autocompiled layout vs predefined layout
+### Autocompiled layout vs predefined layout
 
 ```
 ## render_view tests ##
@@ -91,4 +91,20 @@ No autocompile with layout...done
   total:        0.17 s (10 iterations)
   avg per call: 10.12 ms
   first call:   82.10 ms
+```
+
+### Precompiled layout
+
+```
+## compiled_layout tests ##
+(total template size 1.10 MB)
+
+Precompiled layout, no autocompile and no caching...done
+  total:        0.17 s (10 iterations)
+  avg per call: 17.17 ms
+  first call:   17.79 ms
+Precompiled layout, no autocompile and no caching (using Layouts.render)...done
+  total:        0.17 s (10 iterations)
+  avg per call: 16.73 ms
+  first call:   16.74 ms
 ```

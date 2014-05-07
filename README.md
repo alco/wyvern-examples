@@ -15,6 +15,8 @@ This function will compile the templates in memory and will also cache the
 results per the provided config, making subsequent calls to it using the same
 layers fairly cheap.
 
+Preliminary benchmark results can be seen [here](https://github.com/alco/wyvern-examples/tree/master/apps/perf#template-sizes).
+
 There's a number of ways to help building a maintainable structure for
 templates and optimizing for specific use cases. They are described below.
 
@@ -56,6 +58,8 @@ end
 
 Repeated calls to the `navbar_layout` function will hit the cache so it won't
 recompile the layers every time.
+
+Preliminary benchmark results can be seen [here](https://github.com/alco/wyvern-examples/tree/master/apps/perf#autocompiled-layout-vs-predefined-layout).
 
 
 ### Precompiling layouts
@@ -100,6 +104,8 @@ SingleLayout.render("view", attrs: ...)
 # or
 Wyvern.render_view([SingleLayout, "view"])
 ```
+
+Preliminary benchmark results can be seen [here](https://github.com/alco/wyvern-examples/tree/master/apps/perf#precompiled-layout).
 
 
 ### Precompiling views
