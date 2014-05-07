@@ -38,6 +38,7 @@ defmodule Perf.RenderView do
 
   def measure(size) do
     IO.puts ""
+    IO.puts "## render_view tests ##"
     gen_templates(size, clean: true)
     IO.puts ""
 

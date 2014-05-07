@@ -1,6 +1,8 @@
 # Perf
 
-Test run:
+## Test runs
+
+### Comparing template sizes
 
 ```
 λ mix run
@@ -49,4 +51,44 @@ Autocompile with precompilation but no caching...done
   total:        1.35 s (10 iterations)
   avg per call: 133.44 ms
   first call:   145.77 ms
+```
+
+### Comparing autocompiled layout vs predefined layout
+
+```
+## render_view tests ##
+generating templates...done (total size 0.60 MB)
+
+No autocompile and no caching...done
+  total:        1.42 s (10 iterations)
+  avg per call: 137.33 ms
+  first call:   181.72 ms
+Autocompile but no caching...done
+  total:        6.58 s (10 iterations)
+  avg per call: 37.82 ms
+  first call:   6237.45 ms
+Autocompile with precompilation but no caching...done
+  total:        0.35 s (10 iterations)
+  avg per call: 34.44 ms
+  first call:   42.24 ms
+
+## define_layout tests ##
+generating templates...done (total size 0.55 MB)
+
+No autocompile and no caching...done
+  total:        1.34 s (10 iterations)
+  avg per call: 131.49 ms
+  first call:   158.37 ms
+Autocompile with precompilation but no caching...done
+  total:        0.27 s (10 iterations)
+  avg per call: 26.50 ms
+  first call:   30.92 ms
+Defining layout...done
+  total:        7.90 s (10 iterations)
+  avg per call: 0.01 ms
+  first call:   7899.47 ms
+No autocompile with layout...done
+  total:        0.17 s (10 iterations)
+  avg per call: 10.12 ms
+  first call:   82.10 ms
 ```

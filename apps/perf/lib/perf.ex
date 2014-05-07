@@ -6,6 +6,8 @@ defmodule Perf do
     Perf.RenderView.measure(100000)
     #Perf.RenderView.measure(200000)
 
+    Perf.DefineLayout.measure(50000)
+
     {:ok, self()}
   end
 
