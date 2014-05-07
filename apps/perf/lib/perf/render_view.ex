@@ -5,8 +5,12 @@ defmodule Perf.RenderView do
   @views_root "tmp/render_view/views"
 
   # generate sizable templates
-  def gen_templates() do
+  def gen_templates(size, [clean: should_clean]) do
     base_path = Path.join(@views_root, "templates")
+
+    if should_clean do
+      File.rm_rf!(base_path)
+    end
 
     case File.stat(Path.join(base_path, "view.html.eex")) do
       {:error, :enoent} ->
@@ -14,8 +18,8 @@ defmodule Perf.RenderView do
         File.mkdir_p!(base_path)
 
         bindata =
-          Stream.repeatedly(fn -> "1234567890" end)
-          |> Stream.take(10 * 1024)
+          Stream.repeatedly(fn -> "*" end)
+          |> Stream.take(size)
           |> Enum.join()
 
         File.write!(Path.join(base_path, "base.html.eex"),
@@ -25,12 +29,18 @@ defmodule Perf.RenderView do
         File.write!(Path.join(base_path, "view.html.eex"),
                     bindata <> bindata <> bindata)
 
-        IO.puts "done"
+        total_mb = Perf.format_num((size * 6) / 1000000)
+
+        IO.puts "done (total size #{total_mb} MB)"
       _ -> nil
     end
   end
 
-  def measure() do
+  def measure(size) do
+    IO.puts ""
+    gen_templates(size, clean: true)
+    IO.puts ""
+
     layers = ["base", "interm", "view"]
     config = [views_root: @views_root]
     autocompile_config = [autocompile: true] ++ config
@@ -40,13 +50,13 @@ defmodule Perf.RenderView do
       Wyvern.render_view(layers, config)
     end)
 
-    #Wyvern.purge_cache(:autocompile)
+    Wyvern.purge_cache(:autocompile)
 
     Perf.measure("Autocompile but no caching", fn ->
       Wyvern.render_view(layers, autocompile_config)
     end)
 
-    #Wyvern.purge_cache(:autocompile)
+    Wyvern.purge_cache(:autocompile)
 
     # precompile before measuring begins
     Wyvern.render_view(layers, autocompile_config)
