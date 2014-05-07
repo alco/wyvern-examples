@@ -1,0 +1,12 @@
+<h2>Navbar</h2>
+<ul>
+  <li>Nav item #1</li>
+  <li>Nav item #2</li>
+  <li>Nav item #3</li>
+</ul>
+
+<%= yield %>
+
+<hr/>
+
+<p>Footer</p>
