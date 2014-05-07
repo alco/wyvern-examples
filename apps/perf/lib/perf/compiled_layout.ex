@@ -62,8 +62,17 @@ defmodule Perf.CompiledLayout do
     IO.puts ""
 
     config = [views_root: @views_root]
-    autocompile_config = [autocompile: true] ++ config
+    layout_layers = ["layout1", "layout2", "layout3", "layout4", "layout5",
+                     "layout6", "layout7", "layout8", "layout9", "layout10"]
 
+    Perf.measure("Basic render_view, no autocompile and no caching", fn ->
+      Wyvern.render_view(layout_layers ++ ["view"], config)
+    end)
+
+    Perf.measure("Predefined layout, no autocompile and no caching", fn ->
+      layout = Wyvern.define_layout(layout_layers, config)
+      Wyvern.render_view([layout, "view"], config)
+    end)
 
     Perf.measure("Precompiled layout, no autocompile and no caching", fn ->
       Wyvern.render_view([Layouts.layout("layout:compiled"), "view"], config)
