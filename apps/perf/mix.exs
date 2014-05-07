@@ -11,7 +11,8 @@ defmodule Perf.Mixfile do
   end
 
   def application do
-    [applications: [:wyvern]]
+    [applications: [:wyvern],
+     mod: {Perf, []}]
   end
 
   defp deps do
