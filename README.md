@@ -152,6 +152,8 @@ end
 IndexView.render(<attrs>)
 ```
 
+Preliminary benchmark results can be seen [here](https://github.com/alco/wyvern-examples/tree/master/apps/perf#compiled-views).
+
 
 ### Prerendering views
 

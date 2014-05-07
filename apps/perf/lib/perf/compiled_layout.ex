@@ -39,9 +39,9 @@ defmodule Perf.CompiledLayout do
   # Measures performance of the `Wyvern.render_view` function with precompiled
   # layouts
 
-  defmodule Layouts do
-    Perf.CompiledLayout.Generator.gen_templates(Perf.CompiledLayout, 50000, clean: true)
+  Perf.CompiledLayout.Generator.gen_templates(__MODULE__, 50000, clean: true)
 
+  defmodule Layouts do
     require Wyvern
     # FIXME: replace literal values with variables when they are supported
     Wyvern.compile_layouts([

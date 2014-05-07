@@ -8,7 +8,9 @@ defmodule Perf do
 
     #Perf.DefineLayout.measure(50000)
 
-    Perf.CompiledLayout.measure()
+    #Perf.CompiledLayout.measure()
+
+    Perf.CompiledView.measure()
 
     {:ok, self()}
   end

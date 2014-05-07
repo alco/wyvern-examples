@@ -2,6 +2,10 @@
 
 ## Test runs
 
+These results are preliminary. Compilation of templates may be optimized in the
+future. This also doesn't show the memory usage during compilation (which
+happens to be quite significant).
+
 ### Template sizes
 
 ```
@@ -119,4 +123,32 @@ Precompiled layout, no autocompile and no caching (using single module)...done
   total:        0.10 s (10 iterations)
   avg per call: 9.51 ms
   first call:   9.39 ms
+```
+
+### Compiled views
+
+```
+## compiled_view tests ##
+(total template size 1.20 MB)
+
+Basic render_view(basic_view), no autocompile and no caching...done
+  total:        1.83 s (10 iterations)
+  avg per call: 182.03 ms
+  first call:   195.29 ms
+Precompiled basic_view, no caching...done
+  total:        0.00 s (10 iterations)
+  avg per call: 0.09 ms
+  first call:   0.16 ms
+Basic render_view(nested_view), no autocompile and no caching...done
+  total:        1.87 s (10 iterations)
+  avg per call: 185.81 ms
+  first call:   196.96 ms
+Precompiled nested_view, no caching...done
+  total:        0.01 s (10 iterations)
+  avg per call: 0.29 ms
+  first call:   4.03 ms
+Precompiled nested_view, no caching (using single module)...done
+  total:        0.00 s (10 iterations)
+  avg per call: 0.18 ms
+  first call:   0.27 ms
 ```
