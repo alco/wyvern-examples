@@ -2,9 +2,9 @@ defmodule Perf do
   use Application.Behaviour
 
   def start(_type, _args) do
-    Perf.RenderView.measure(10000)
+    #Perf.RenderView.measure(10000)
     Perf.RenderView.measure(100000)
-    Perf.RenderView.measure(200000)
+    #Perf.RenderView.measure(200000)
 
     {:ok, self()}
   end
