@@ -6,7 +6,7 @@ defmodule Prerender.Mixfile do
      version: "0.0.1",
      deps_path: "../../deps",
      lockfile: "../../mix.lock",
-     elixir: "~> 0.13.1",
+     elixir: "~> 0.14.0",
      deps: deps]
   end
 
